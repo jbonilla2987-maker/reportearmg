@@ -1,0 +1,12 @@
+FIX DE IMAGEN PARA GITHUB PAGES
+
+Este paquete corrige el banner que no cargaba en GitHub Pages.
+La imagen fue integrada directamente en index.html e historial.html para evitar fallos por ruta, carpeta assets o nombre de archivo.
+
+Pasos:
+1. En GitHub, entra al repositorio reportearmg.
+2. Click en Add file > Upload files.
+3. Sube todos los archivos y carpetas de este paquete descomprimido.
+4. Confirma con Commit changes.
+5. Abre la pagina y presiona Ctrl + F5.
+6. Prueba /verificar-imagen.html.
