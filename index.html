@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reporte de Fallas RMG 3.1</title>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-capture">
+  <header class="topbar">
+    <div class="hero-banner">
+      <img src="assets/PSA-Panama-11-1024x622-1.webp" alt="Banner reporte de fallas RMG" class="hero-image" />
+      <div class="hero-overlay"></div>
+      <div class="hero-copy">
+        <span class="eyebrow">Sistema de seguimiento operacional</span>
+        <h1>Reporte de Fallas RMG</h1>
+        <p>Registro, control, trazabilidad y exportación de eventos por grúa automatizada</p>
+        <span class="version-badge">Versión 3.1</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="stats" aria-label="Indicadores principales">
+      <div class="stat-card">
+        <div class="stat-title">Total activo</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Fallas abiertas</div>
+        <div class="stat-value danger-text" id="statAbiertas">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Fallas cerradas</div>
+        <div class="stat-value success-text" id="statCerradas">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Última actualización</div>
+        <div class="stat-value small" id="statActualizacion">Sin cargar</div>
+      </div>
+    </section>
+
+    <section class="rmg-summary card soft-card">
+      <div class="card-header compact-header">
+        <div>
+          <h2>Fallas abiertas por RMG</h2>
+          <p>Resumen rápido para priorizar atención operativa.</p>
+        </div>
+        <button class="btn btn-light" id="btnActualizarResumen" type="button">Actualizar</button>
+      </div>
+      <div class="rmg-pill-grid" id="resumenRmg"></div>
+    </section>
+
+    <section class="card" id="seccionCaptura">
+      <div class="card-header">
+        <div>
+          <h2>Captura de fallas</h2>
+          <p>Completa la información requerida, registra inicio y guarda el reporte.</p>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button class="btn btn-primary" id="btnAgregarFalla" type="button">Agregar falla</button>
+          </div>
+
+          <div class="toolbar-center toolbar-operator">
+            <label for="operadorGeneral">Operador activo</label>
+            <div class="operator-row">
+              <select id="operadorGeneral" aria-label="Operador activo">
+                <option value="">Seleccione operador</option>
+              </select>
+              <button class="btn btn-light" id="btnLimpiarOperador" type="button">Cambiar</button>
+            </div>
+            <small>El operador queda guardado hasta que se cambie manualmente.</small>
+          </div>
+
+          <div class="toolbar-right">
+            <a class="btn btn-danger btn-link" href="historial.html">Historial</a>
+            <button class="btn btn-success" id="btnExportar" type="button">Exportar Excel</button>
+          </div>
+        </div>
+
+        <div id="mensaje" class="message" role="status" aria-live="polite"></div>
+        <div class="fallas-grid" id="contenedorFallas"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="utils.js"></script>
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

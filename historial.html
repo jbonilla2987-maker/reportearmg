@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historial de Reportes RMG 3.1</title>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-history">
+  <header class="topbar">
+    <div class="hero-banner">
+      <img src="assets/PSA-Panama-11-1024x622-1.webp" alt="Banner reporte de fallas RMG" class="hero-image" />
+      <div class="hero-overlay"></div>
+      <div class="hero-copy">
+        <span class="eyebrow">Sistema de seguimiento operacional</span>
+        <h1>Historial de Fallas RMG</h1>
+        <p>Consulta, cierre, exportación y trazabilidad de reportes operativos</p>
+        <span class="version-badge">Versión 3.1</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="stats" aria-label="Indicadores principales">
+      <div class="stat-card">
+        <div class="stat-title">Total activo</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Fallas abiertas</div>
+        <div class="stat-value danger-text" id="statAbiertas">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Fallas cerradas</div>
+        <div class="stat-value success-text" id="statCerradas">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Eliminadas</div>
+        <div class="stat-value muted-text" id="statEliminadas">0</div>
+      </div>
+    </section>
+
+    <section class="card" id="seccionHistorial">
+      <div class="card-header">
+        <div>
+          <h2>Historial de reportes</h2>
+          <p>Los reportes eliminados quedan marcados como eliminados para mantener trazabilidad.</p>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="toolbar page-toolbar">
+          <div class="toolbar-left">
+            <a class="btn btn-primary btn-link" href="index.html">Volver a captura</a>
+          </div>
+          <div class="toolbar-right">
+            <button class="btn btn-light" id="btnActualizar" type="button">Actualizar datos</button>
+            <button class="btn btn-success" id="btnExportar" type="button">Exportar filtrado</button>
+          </div>
+        </div>
+
+        <div id="mensaje" class="message" role="status" aria-live="polite"></div>
+
+        <div class="filters advanced-filters">
+          <div class="field">
+            <label for="filtroFechaDesde">Desde</label>
+            <input type="date" id="filtroFechaDesde" />
+          </div>
+          <div class="field">
+            <label for="filtroFechaHasta">Hasta</label>
+            <input type="date" id="filtroFechaHasta" />
+          </div>
+          <div class="field">
+            <label for="filtroRmg">Grúa</label>
+            <select id="filtroRmg"><option value="">Todos</option></select>
+          </div>
+          <div class="field">
+            <label for="filtroTurno">Turno</label>
+            <select id="filtroTurno"><option value="">Todos</option></select>
+          </div>
+          <div class="field">
+            <label for="filtroEstado">Estado</label>
+            <select id="filtroEstado">
+              <option value="">Todos</option>
+              <option>Abierta</option>
+              <option>Cerrada</option>
+              <option>Eliminada</option>
+            </select>
+          </div>
+          <div class="field search-field">
+            <label for="busqueda">Buscar texto</label>
+            <input type="text" id="busqueda" placeholder="Operador, descripción, acción, área o tipo de falla" />
+          </div>
+        </div>
+
+        <div class="table-tools">
+          <span id="contadorFiltrado">0 reportes encontrados</span>
+          <button class="btn btn-light" id="btnLimpiarFiltros" type="button">Limpiar filtros</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Grúa</th>
+                <th>Operador</th>
+                <th>Turno</th>
+                <th>Área</th>
+                <th>Tipo</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Tiempo</th>
+                <th>Estado</th>
+                <th>Descripción</th>
+                <th>Acción tomada</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaReportes"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="utils.js"></script>
+  <script src="api.js"></script>
+  <script src="historial.js"></script>
+</body>
+</html>
